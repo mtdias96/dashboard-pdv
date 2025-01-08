@@ -14,6 +14,12 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@/view/*": [
+        "./src/view/*"
+      ],
+      "@/app/*": [
+        "./src/app/*"
       ]
     },
     /* Bundler mode */
