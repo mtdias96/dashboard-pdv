@@ -2,7 +2,7 @@ import StoreTitle from '@/view/components/StoreTitle';
 import { Button } from '@/view/components/ui/button';
 import { Input } from '@/view/components/ui/input';
 import { Label } from '@/view/components/ui/label';
-import { useRegisterFormController } from '@/view/pages/Register/components/useRegisterFormController';
+import { useRegisterFormController } from '@/view/pages/Auth/Register/components/useRegisterFormController';
 import { XCircle } from '@mynaui/icons-react';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
