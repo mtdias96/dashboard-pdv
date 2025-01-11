@@ -1,9 +1,8 @@
 import { AuthGuard } from '@/app/guards/AuthGuard';
 import { PATHS } from '@/routers/path';
+import DashLayout from '@/view/layout/DashLayout';
 import Login from '@/view/pages/Auth/Login';
 import Register from '@/view/pages/Auth/Register';
-import { Dashboard } from '@/view/pages/Dashboard';
-
 
 import { useRoutes } from 'react-router-dom';
 
@@ -19,7 +18,17 @@ export function Router() {
       children: [
         {
           path: PATHS.dashboard.root,
-          element: <Dashboard />,
+          element: <DashLayout />,
+          children: [
+            {
+              path: PATHS.dashboard.root,
+              element: 'Homne',
+            },
+            {
+              path: '/produtos',
+              element: 'produto',
+            },
+          ],
         },
       ],
     },
