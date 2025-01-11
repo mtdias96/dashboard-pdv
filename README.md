@@ -15,9 +15,9 @@ O **Adegatech Dashboard** é uma plataforma escalável e automatizada voltada pa
 ## Tecnologias Utilizadas
 
 ### Frontend
-- **React** com **MUI** para a interface do dashboard.
+- **React** com **Shadcn** para a interface do dashboard.
 - **Hook Forms** e **Zod** para validação e gerenciamento de formulários.
-- **Talwind e Shadcn** para customização de estilos.
+- **Talwind** para customização de estilos.
 
 ### Backend
 - **Node.js** com **NestJs** para criação da API.
