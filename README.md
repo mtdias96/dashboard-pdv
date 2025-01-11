@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# Adegatech Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O **Adegatech Dashboard** é uma plataforma escalável e automatizada voltada para a gestão de adegas. Com ela, donos de estabelecimentos podem controlar vendas, estoque, pedidos e relatórios de maneira eficiente e centralizada. O objetivo é facilitar a operação diária e oferecer insights sobre o desempenho do negócio.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Gestão de Produtos e Estoque**: Adicione, edite ou remova itens do estoque diretamente pelo dashboard.
+- **Controle de Vendas**: Registre cada venda associada a um funcionário e acompanhe o desempenho individual.
+- **Relatórios Automatizados**: Geração de relatórios financeiros (receita, despesas) com exportação para formatos como PDF.
+- **Indicadores em Tempo Real**: Acompanhe métricas como faturamento diário, produtos mais vendidos e horários de pico.
+- **Histórico de Operações**: Registro detalhado de transações, incluindo data, valor e status.
+- **Pagamentos via QR Code/NFC**: Integração para facilitar o pagamento diretamente pelo aplicativo.
+- **Alertas em Tempo Real**: Notificações sobre pedidos atrasados, estoque baixo ou metas diárias atingidas.
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Frontend
+- **React** com **MUI** para a interface do dashboard.
+- **Hook Forms** e **Zod** para validação e gerenciamento de formulários.
+- **Talwind e Shadcn** para customização de estilos.
 
-- Configure the top-level `parserOptions` property like this:
+### Backend
+- **Node.js** com **NestJs** para criação da API.
+- **Prisma** para consultas ao banco de dados **PostgreSQL**.
+- **Docker** para containerização.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### DevOps
+- **GitHub Actions** configurado para:
+  - Lint nos commits (commitlint).
+  - Validação do nome das branches (lint-branch).
+  - Execução de testes e jobs (lint-job).
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Infraestrutura
+- Em andamento.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Instalação e Configuração
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/adegatech-dashboard.git
+
