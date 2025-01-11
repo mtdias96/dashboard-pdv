@@ -1,4 +1,5 @@
-import { SignUpForm } from '@/view/pages/Register/components/SignUpForm';
+import { SignUpForm } from "@/view/pages/Auth/Register/components/SignUpForm";
+
 
 export default function Register() {
   return (

@@ -1,4 +1,5 @@
-import { CardForm } from '@/view/pages/Login/components/CardForm';
+import { CardForm } from "@/view/pages/Auth/Login/components/CardForm";
+
 
 export default function Login() {
   return (

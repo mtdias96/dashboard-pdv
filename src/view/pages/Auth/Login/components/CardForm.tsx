@@ -2,7 +2,7 @@ import StoreTitle from '@/view/components/StoreTitle';
 import { Button } from '@/view/components/ui/button';
 import { Input } from '@/view/components/ui/input';
 import { Label } from '@/view/components/ui/label';
-import { useCardFormController } from '@/view/pages/Login/components/useCardFormController';
+import { useCardFormController } from '@/view/pages/Auth/Login/components/useCardFormController';
 import { XCircle } from '@mynaui/icons-react';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';

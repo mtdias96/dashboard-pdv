@@ -1,9 +1,9 @@
 import { AuthGuard } from '@/app/guards/AuthGuard';
 import { PATHS } from '@/routers/path';
+import Login from '@/view/pages/Auth/Login';
+import Register from '@/view/pages/Auth/Register';
 import { Dashboard } from '@/view/pages/Dashboard';
 
-import Login from '@/view/pages/Login';
-import Register from '@/view/pages/Register';
 
 import { useRoutes } from 'react-router-dom';
 
@@ -20,16 +20,6 @@ export function Router() {
         {
           path: PATHS.dashboard.root,
           element: <Dashboard />,
-        },
-        {
-          path: PATHS.dashboard.inventory,
-          element: <h2>Inventory</h2>,
-          children: [
-            {
-              path: PATHS.dashboard.inventoryPrices,
-              element: <h2>Inventory Price</h2>,
-            },
-          ],
         },
       ],
     },
