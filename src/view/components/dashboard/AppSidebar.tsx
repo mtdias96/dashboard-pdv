@@ -23,11 +23,6 @@ import { AvatarImage } from '@radix-ui/react-avatar';
 
 // Mock data
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
       title: 'Home',
@@ -37,6 +32,7 @@ const data = {
     {
       title: 'Produtos',
       url: '/produtos',
+      sub: '/produtos/categorias',
       icon: ShoppingBag,
     },
     {
@@ -62,7 +58,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const navItemsWithActiveState = data.navMain.map((item) => ({
     ...item,
-    isActive: location.pathname === item.url,
+    isActive: location.pathname === item.url || location.pathname === item.sub,
   }));
 
   return (
