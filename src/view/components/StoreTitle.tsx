@@ -1,6 +1,11 @@
+import { cn } from '@/app/lib/utils';
 import { motion } from 'framer-motion';
 
-export default function StoreTitle() {
+interface ITitleProrps {
+  className?: string;
+}
+
+export default function StoreTitle({ className }: ITitleProrps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -13,7 +18,12 @@ export default function StoreTitle() {
         whileHover={{ scale: 1.05 }}
         transition={{ type: 'spring', stiffness: 400, damping: 10 }}
       >
-        <motion.h2 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-red-500 to-yellow-500 leading-tight">
+        <motion.h2
+          className={cn(
+            'text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-red-500 to-yellow-500 leading-tight',
+            className,
+          )}
+        >
           My<span className="font-light italic">Dega</span>
         </motion.h2>
         <motion.div
