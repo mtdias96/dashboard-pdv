@@ -1,8 +1,10 @@
 import { AuthGuard } from '@/app/guards/AuthGuard';
 import { PATHS } from '@/routers/path';
 import DashLayout from '@/view/layout/DashLayout';
+import { ProductLayout } from '@/view/layout/ProductLayout';
 import Login from '@/view/pages/Auth/Login';
 import Register from '@/view/pages/Auth/Register';
+import { ProductsHome } from '@/view/pages/Dashboard/Products';
 
 import { useRoutes } from 'react-router-dom';
 
@@ -22,11 +24,21 @@ export function Router() {
           children: [
             {
               path: PATHS.dashboard.root,
-              element: 'Homne',
+              element: 'Home',
             },
             {
               path: '/produtos',
-              element: 'produto',
+              element: <ProductLayout />,
+              children: [
+                {
+                  path: '/produtos',
+                  element: <ProductsHome />,
+                },
+                {
+                  path: '/produtos/categorias',
+                  element: 'Categorias',
+                },
+              ],
             },
           ],
         },
