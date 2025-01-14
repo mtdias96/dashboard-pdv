@@ -5,7 +5,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/view/components/ui/dialog';
-import ContentModal from '@/view/pages/Dashboard/Products/components/ProductModal/ContentModal';
+import ProductModalForm from '@/view/pages/Dashboard/Products/components/ProductModal/ProductModalForm';
+
 import { DialogClose } from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 
@@ -35,7 +36,7 @@ export function ProductModal({
             </DialogClose>
           </DialogTitle>
         </DialogHeader>
-        <ContentModal />
+        <ProductModalForm />
       </DialogContent>
     </Dialog>
   );
