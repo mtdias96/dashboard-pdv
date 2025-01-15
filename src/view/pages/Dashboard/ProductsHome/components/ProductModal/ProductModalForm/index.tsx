@@ -155,18 +155,18 @@ export default function ProductModalForm() {
               </div>
             </div>
           </div>
+          <div className="w-full flex justify-end">
+            {isPending && (
+              <Button type="submit" disabled={isPending}>
+                Cadastrando...
+              </Button>
+            )}
+            <Button type="submit" className="w-52 h-11" disabled={isPending}>
+              Salvar
+            </Button>
+          </div>
         </CardContent>
       </Card>
-      <div className="w-full flex justify-end">
-        {isPending && (
-          <Button type="submit" disabled={isPending}>
-            Cadastrando...
-          </Button>
-        )}
-        <Button type="submit" disabled={isPending}>
-          Salvar
-        </Button>
-      </div>
     </form>
   );
 }
