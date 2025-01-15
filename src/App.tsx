@@ -8,7 +8,7 @@ export function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 5000,
+        staleTime: Infinity,
         refetchOnWindowFocus: false,
         retry: false,
         gcTime: 10 * 60 * 1000, // 10 minutes
