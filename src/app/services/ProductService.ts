@@ -26,4 +26,8 @@ export class ProductService {
       },
     });
   }
+
+  static async deleteProduct(productId: string): Promise<void> {
+    await httpClient.delete(`products/${productId}`);
+  }
 }
