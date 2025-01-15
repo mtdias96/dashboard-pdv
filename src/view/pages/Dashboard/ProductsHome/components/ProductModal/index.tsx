@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/view/components/ui/dialog';
-import ProductModalForm from '@/view/pages/Dashboard/Products/components/ProductModal/ProductModalForm';
+import ProductModalForm from '@/view/pages/Dashboard/ProductsHome/components/ProductModal/ProductModalForm';
 
 import { DialogClose } from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
@@ -20,7 +20,6 @@ interface IProductModalProps {
 export function ProductModal({
   open,
   onOpenChange,
-  // onSubmit,
   product,
 }: IProductModalProps) {
   const title = product ? 'Editar Produto' : 'Criar Novo Produto';

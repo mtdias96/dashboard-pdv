@@ -1,29 +1,25 @@
-import { IProduct } from '@/app/interfaces/IProduct';
-import { ProductService } from '@/app/services/ProductService';
+import { useGetProducts } from '@/app/hooks/product/useGetProduct';
 import { useEffect, useState } from 'react';
 import { ProductModal } from './components/ProductModal';
 import { ProductTable } from './components/ProductTable';
 
+const baseURL = 'http://localhost:8080/';
+
 export function ProductsHome() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [products, setProducts] = useState<IProduct[]>([]); // Array vazio como padrão
-
-  const getProducts = async () => {
-    const fetchedProducts = await ProductService.getProducts();
-    setProducts(fetchedProducts); // Define diretamente os produtos
-  };
+  const { data: products, refetch } = useGetProducts();
 
   useEffect(() => {
-    getProducts();
-  }, []); // Remove a dependência de `products` para evitar chamadas infinitas
-  const baseURL = 'http://localhost:8080/';
+    refetch();
+  }, [isModalOpen]);
+
   return (
     <main className="h-screen">
       <div className="flex justify-between pt-8 py-6">
         <h2 className="font-semibold text-lg flex items-center gap-2">
           Produtos{' '}
           <p className="bg-gray-200 px-2 border rounded-lg text-base">
-            {products.length}
+            {products?.length}
           </p>
         </h2>
         <button
@@ -33,12 +29,8 @@ export function ProductsHome() {
           Novo Produto
         </button>
       </div>
-      <ProductTable baseURL={baseURL} products={products} />{' '}
-      <ProductModal
-        open={isModalOpen}
-        onOpenChange={setIsModalOpen}
-        // onSubmit={true}
-      />
+      <ProductTable baseURL={baseURL} products={products || []} />
+      <ProductModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </main>
   );
 }

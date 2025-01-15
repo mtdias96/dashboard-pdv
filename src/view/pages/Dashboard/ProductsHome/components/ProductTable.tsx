@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/view/components/ui/table';
-import { ProductModal } from '@/view/pages/Dashboard/Products/components/ProductModal';
+import { ProductModal } from '@/view/pages/Dashboard/ProductsHome/components/ProductModal';
 import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -18,12 +18,12 @@ const icon = {
   ação2: Trash2,
 };
 
-type teste = {
+type ProductTableProps = {
   baseURL: string;
-  products: IProduct[];
+  products: IProduct[] | [];
 };
 
-export function ProductTable({ baseURL, products }: teste) {
+export function ProductTable({ baseURL, products }: ProductTableProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
@@ -43,7 +43,7 @@ export function ProductTable({ baseURL, products }: teste) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {products?.map((invoice) => (
+          {products.map((invoice) => (
             <TableRow key={invoice.id} className="hover:bg-gray-50">
               <TableCell className="w-[100px] h-[150px]">
                 <img
