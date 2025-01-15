@@ -26,7 +26,7 @@ export function ProductModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-full h-full sm:max-w-[70%] m-0 p-8 flex flex-col gap-12 overflow-auto">
+      <DialogContent className=" h-full sm:max-w-[70%] sm:max-h-[98%] m-0 p-8 flex flex-col gap-12 overflow-auto">
         <DialogHeader className="h-9">
           <DialogTitle className="text-xl font-semibold w-full flex justify-between items-center">
             <span>{title}</span>
