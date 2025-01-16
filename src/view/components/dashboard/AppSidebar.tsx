@@ -8,7 +8,7 @@ import {
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { LogoutButton } from '@/view/components/dashboard/LogoutButtonProps ';
+import { LogoutButton } from '@/view/components/dashboard/LogoutButton';
 
 import { NavMain } from '@/view/components/dashboard/NavMain';
 import { Avatar } from '@/view/components/ui/avatar';

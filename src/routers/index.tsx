@@ -4,7 +4,7 @@ import DashLayout from '@/view/layout/DashLayout';
 import { ProductLayout } from '@/view/layout/ProductLayout';
 import Login from '@/view/pages/Auth/Login';
 import Register from '@/view/pages/Auth/Register';
-import { ProductsHome } from '@/view/pages/Dashboard/Products';
+import { ProductsHome } from '@/view/pages/Dashboard/ProductsHome';
 
 import { useRoutes } from 'react-router-dom';
 

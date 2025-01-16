@@ -1,3 +1,4 @@
+import { IProduct } from '@/app/interfaces/IProduct';
 import { cn } from '@/app/lib/utils';
 import { Button } from '@/view/components/ui/button';
 import { Card, CardContent } from '@/view/components/ui/card';
@@ -6,9 +7,18 @@ import { FormItem, FormLabel } from '@/view/components/ui/form';
 import { Input } from '@/view/components/ui/input';
 import { Textarea } from '@/view/components/ui/textarea';
 import { ImagePlus, Plus, Search } from 'lucide-react';
+import { useEffect } from 'react';
 import { useContentModalController } from './useContentModalController';
 
-export default function ProductModalForm() {
+interface IProductModalForm {
+  productEdit?: IProduct;
+  isEditing: boolean;
+}
+
+export default function ProductModalForm({
+  productEdit,
+  isEditing,
+}: IProductModalForm) {
   const {
     register,
     handleSubmit,
@@ -18,7 +28,19 @@ export default function ProductModalForm() {
     selectedImage,
     setSelectedImage,
     isPending,
-  } = useContentModalController();
+    setValue,
+    open,
+  } = useContentModalController(isEditing);
+
+  useEffect(() => {
+    if (isEditing && productEdit) {
+      setValue('name', productEdit.name);
+      setValue('description', productEdit.description || '');
+      setValue('stock', productEdit.stock || 0);
+      setValue('price', productEdit.price || 0);
+      setValue('id', productEdit.id || '');
+    }
+  }, [isEditing, productEdit, setValue, setSelectedImage]);
 
   const categories = [
     { id: 'c8ba2031-0169-4b65-8c6a-d91f9c791717', label: '🍺 Cervejas' },
@@ -30,6 +52,8 @@ export default function ProductModalForm() {
     { id: 'Champanhe', label: '🍾 Champanhe' },
   ];
 
+  const baseURL = 'http://localhost:8080/';
+
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <Card>
@@ -40,16 +64,22 @@ export default function ProductModalForm() {
               <div
                 {...getRootProps()}
                 className={cn(
-                  'border-2 rounded-lg text-center flex flex-col items-center gap-4 ',
+                  'border-2 rounded-lg text-center flex flex-col items-center gap-4',
                   isDragActive && 'bg-accent',
                 )}
               >
                 <input {...getInputProps()} />
-                <div className="w-full h-44  flex bg-gray-50 justify-center items-center cursor-pointer">
+                <div className="w-full h-44 flex bg-gray-50 justify-center items-center cursor-pointer">
                   {selectedImage ? (
                     <img
                       src={selectedImage}
                       alt="Selected product"
+                      className="w-full h-full object-contain rounded-lg"
+                    />
+                  ) : productEdit?.imageUrl ? (
+                    <img
+                      src={`${baseURL}${productEdit.imageUrl}`}
+                      alt="Product"
                       className="w-full h-full object-contain rounded-lg"
                     />
                   ) : (
@@ -63,9 +93,10 @@ export default function ProductModalForm() {
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedImage(null);
+                    open();
                   }}
                 >
-                  {selectedImage ? 'Remover Imagem' : 'Alterar Imagem'}
+                  {selectedImage ? 'Remover Imagem' : 'Selecionar Imagem'}
                 </Button>
               </div>
               <div className="space-y-4 pt-8">
@@ -76,7 +107,7 @@ export default function ProductModalForm() {
                   <Input
                     placeholder="Ex: Cerveja Haineken"
                     type="text"
-                    {...register('name')}
+                    {...register('name', {})}
                   />
                 </FormItem>
                 <FormItem>
@@ -93,7 +124,10 @@ export default function ProductModalForm() {
                         e.target.value = `R$ ${value}`;
                       },
                       setValueAs: (value) => {
-                        return parseFloat(value.replace(/[^\d.]/g, ''));
+                        if (typeof value === 'string') {
+                          return parseFloat(value.replace(/[^\d.]/g, '')) || 0;
+                        }
+                        return value || 0;
                       },
                     })}
                   />
@@ -155,18 +189,18 @@ export default function ProductModalForm() {
               </div>
             </div>
           </div>
+          <div className="w-full flex justify-end">
+            {isPending && (
+              <Button type="submit" disabled={isPending}>
+                Cadastrando...
+              </Button>
+            )}
+            <Button type="submit" className="w-52 h-11" disabled={isPending}>
+              {isEditing ? 'Atualizar' : 'Cadastrar'}
+            </Button>
+          </div>
         </CardContent>
       </Card>
-      <div className="w-full flex justify-end">
-        {isPending && (
-          <Button type="submit" disabled={isPending}>
-            Cadastrando...
-          </Button>
-        )}
-        <Button type="submit" disabled={isPending}>
-          Salvar
-        </Button>
-      </div>
     </form>
   );
 }
