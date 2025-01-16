@@ -28,6 +28,8 @@ type ProductTableProps = {
 export function ProductTable({ baseURL, products }: ProductTableProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { deleteProduct } = useDeleteProduct();
+  const [productEdit, setProductEdit] = useState<IProduct>();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   return (
     <>
@@ -71,7 +73,11 @@ export function ProductTable({ baseURL, products }: ProductTableProps) {
                   <div className="flex items-center justify-end space-x-2">
                     <button
                       className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full"
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={() => {
+                        setIsModalOpen(true);
+                        setProductEdit(invoice);
+                        setIsEditing(true);
+                      }}
                     >
                       <icon.açõe1 className="w-5 h-5" />
                     </button>
@@ -102,7 +108,9 @@ export function ProductTable({ baseURL, products }: ProductTableProps) {
                   <div className="mt-4">
                     <Button
                       className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none"
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={() => {
+                        setIsModalOpen(true);
+                      }}
                     >
                       Cadastrar Produto
                     </Button>
@@ -121,7 +129,8 @@ export function ProductTable({ baseURL, products }: ProductTableProps) {
       <ProductModal
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
-        product={products}
+        productEdit={productEdit}
+        isEditing={isEditing}
       />
     </>
   );

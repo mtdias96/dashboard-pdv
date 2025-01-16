@@ -13,16 +13,17 @@ import { X } from 'lucide-react';
 interface IProductModalProps {
   open: boolean;
   onOpenChange?: (open: boolean) => void;
-  // onSubmit: (product: Product) => void;
-  product?: IProduct[]; // Se fornecido, estamos no modo de edição
+  productEdit?: IProduct;
+  isEditing?: boolean;
 }
 
 export function ProductModal({
   open,
   onOpenChange,
-  product,
+  productEdit,
+  isEditing,
 }: IProductModalProps) {
-  const title = product ? 'Editar Produto' : 'Criar Novo Produto';
+  const title = productEdit ? 'Editar Produto' : 'Criar Novo Produto';
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -35,7 +36,10 @@ export function ProductModal({
             </DialogClose>
           </DialogTitle>
         </DialogHeader>
-        <ProductModalForm />
+        <ProductModalForm
+          productEdit={productEdit}
+          isEditing={isEditing as boolean}
+        />
       </DialogContent>
     </Dialog>
   );
