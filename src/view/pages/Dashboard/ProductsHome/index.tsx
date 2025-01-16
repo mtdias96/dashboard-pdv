@@ -1,5 +1,5 @@
 import { useGetProducts } from '@/app/hooks/product/useGetProduct';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ProductModal } from './components/ProductModal';
 import { ProductTable } from './components/ProductTable';
 
@@ -7,11 +7,7 @@ const baseURL = 'http://localhost:8080/';
 
 export function ProductsHome() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: products, refetch } = useGetProducts();
-
-  useEffect(() => {
-    refetch();
-  }, [isModalOpen]);
+  const { data: products } = useGetProducts();
 
   return (
     <main className="h-screen">
