@@ -23,7 +23,7 @@ const icon = {
 type ProductTableProps = {
   baseURL: string;
   products: IProduct[] | [];
-  search: IProduct[] | [];
+  search: IProduct[] | undefined;
 };
 
 export function ProductTable({ baseURL, products, search }: ProductTableProps) {
