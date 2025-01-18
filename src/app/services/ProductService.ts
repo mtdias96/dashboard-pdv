@@ -8,6 +8,14 @@ export class ProductService {
     return data;
   }
 
+  static async getSearchProduct(search: string): Promise<IProduct[]> {
+    const { data } = await httpClient.get<IProduct[]>(
+      `product/search/${search}`,
+    );
+
+    return data;
+  }
+
   static async createProduct(product: IProduct): Promise<void> {
     const formData = new FormData();
     formData.append('name', product.name || '');
