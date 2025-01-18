@@ -6,7 +6,7 @@ import { Checkbox } from '@/view/components/ui/checkbox';
 import { FormItem, FormLabel } from '@/view/components/ui/form';
 import { Input } from '@/view/components/ui/input';
 import { Textarea } from '@/view/components/ui/textarea';
-import { ImagePlus, Plus, Search } from 'lucide-react';
+import { ImagePlus, Search } from 'lucide-react';
 import { useEffect } from 'react';
 import { useContentModalController } from './useContentModalController';
 
@@ -153,14 +153,6 @@ export default function ProductModalForm({
             <div className="">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold">Categorias</h2>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-red-500 hover:text-red-400"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Nova Categoria
-                </Button>
               </div>
               <div className="relative mb-4">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
