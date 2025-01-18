@@ -23,9 +23,10 @@ const icon = {
 type ProductTableProps = {
   baseURL: string;
   products: IProduct[] | [];
+  search: IProduct[] | [];
 };
 
-export function ProductTable({ baseURL, products }: ProductTableProps) {
+export function ProductTable({ baseURL, products, search }: ProductTableProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { deleteProduct } = useDeleteProduct();
   const [productEdit, setProductEdit] = useState<IProduct>();
@@ -49,7 +50,62 @@ export function ProductTable({ baseURL, products }: ProductTableProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {products.length > 0 ? (
+          {search && search.length > 0 ? (
+            search.map((invoice) => (
+              <TableRow key={invoice.id} className="hover:bg-gray-50">
+                <TableCell className="w-[100px] h-[150px]">
+                  <img
+                    className="w-full h-full object-cover"
+                    src={`${baseURL}${invoice.imageUrl}`}
+                    alt={invoice.name}
+                  />
+                </TableCell>
+                <TableCell className="leading-6 text-left">
+                  {invoice.name}
+                </TableCell>
+                <TableCell className="text-left leading-6">Cerveja</TableCell>
+                <TableCell className="text-left leading-6">
+                  {fCurrency(invoice.price)}
+                </TableCell>
+                <TableCell className="text-left leading-6">
+                  {invoice.stock || 'N/A'}
+                </TableCell>
+                <TableCell className="text-right">
+                  <div className="flex items-center justify-end space-x-2">
+                    <button
+                      className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full"
+                      onClick={() => {
+                        setIsModalOpen(true);
+                        setProductEdit(invoice);
+                        setIsEditing(true);
+                      }}
+                    >
+                      <icon.açõe1 className="w-5 h-5" />
+                    </button>
+                    <button
+                      className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full"
+                      onClick={() => deleteProduct(invoice.id)}
+                    >
+                      <icon.ação2 className="w-5 h-5 text-red-500" />
+                    </button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : search && search.length === 0 ? (
+            <TableRow>
+              <TableCell
+                colSpan={6}
+                className="text-center text-gray-500 py-10"
+              >
+                <div className="flex flex-col items-center">
+                  <p className="text-xl font-semibold text-gray-700 mb-2">
+                    Nenhum produto encontrado.
+                  </p>
+                </div>
+              </TableCell>
+            </TableRow>
+          ) : products.length > 0 ? (
             products.map((invoice) => (
               <TableRow key={invoice.id} className="hover:bg-gray-50">
                 <TableCell className="w-[100px] h-[150px]">
