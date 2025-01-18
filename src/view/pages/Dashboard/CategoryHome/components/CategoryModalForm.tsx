@@ -1,4 +1,4 @@
-import { useCreateCategory } from '@/app/hooks/category/useCreateProduct';
+import { useCreateCategory } from '@/app/hooks/category/useCreateCategory';
 import { Button } from '@/view/components/ui/button';
 import { FormItem, FormLabel } from '@/view/components/ui/form';
 import { Input } from '@/view/components/ui/input';
