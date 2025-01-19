@@ -39,7 +39,7 @@ export function ProductLayout() {
         <p className="leading-6">Gerencie os produtos do seu estabelecimento</p>
       </header>
 
-      <header className="w-full mt-24 border-b">
+      <header className="w-full mt-16 border-b">
         <nav className="flex font-normal text-sm leading-5 text-gray-400">
           {navItemsWithActiveState.map((item) => (
             <Link

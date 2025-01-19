@@ -6,7 +6,7 @@ import { Checkbox } from '@/view/components/ui/checkbox';
 import { FormItem, FormLabel } from '@/view/components/ui/form';
 import { Input } from '@/view/components/ui/input';
 import { Textarea } from '@/view/components/ui/textarea';
-import { ImagePlus, Plus, Search } from 'lucide-react';
+import { ImagePlus, Search } from 'lucide-react';
 import { useEffect } from 'react';
 import { useContentModalController } from './useContentModalController';
 
@@ -30,6 +30,8 @@ export default function ProductModalForm({
     isPending,
     setValue,
     open,
+    categories,
+    watch,
   } = useContentModalController(isEditing);
 
   useEffect(() => {
@@ -40,19 +42,10 @@ export default function ProductModalForm({
       setValue('price', productEdit.price || 0);
       setValue('id', productEdit.id || '');
     }
-  }, [isEditing, productEdit, setValue, setSelectedImage]);
-
-  const categories = [
-    { id: 'c8ba2031-0169-4b65-8c6a-d91f9c791717', label: '🍺 Cervejas' },
-    { id: 'Vinhos', label: '🍷 Vinhos' },
-    { id: 'Promoções', label: '💰 Promoções' },
-    { id: 'Refrigerantes', label: '🥤 Refrigerantes' },
-    { id: 'Sucos', label: '🍹 Sucos' },
-    { id: 'coco', label: '🧉 Àgua de coco' },
-    { id: 'Champanhe', label: '🍾 Champanhe' },
-  ];
+  }, [isEditing, productEdit, setValue]);
 
   const baseURL = 'http://localhost:8080/';
+  const selectedCategoryId = watch('categoryId');
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
@@ -150,17 +143,9 @@ export default function ProductModalForm({
                 </FormItem>
               </div>
             </div>
-            <div className="">
-              <div className="flex items-center justify-between mb-4">
+            <div>
+              <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold">Categorias</h2>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="text-red-500 hover:text-red-400"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Nova Categoria
-                </Button>
               </div>
               <div className="relative mb-4">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -168,7 +153,7 @@ export default function ProductModalForm({
               </div>
 
               <div className="space-y-2 max-h-[300px] w-full overflow-auto">
-                {categories.map((category) => (
+                {categories?.map((category) => (
                   <div
                     key={category.id}
                     className="flex items-center space-x-2 p-4 hover:bg-gray-50 rounded-md border w-full max-w-[100%]"
@@ -176,13 +161,24 @@ export default function ProductModalForm({
                     <Checkbox
                       id={category.id}
                       {...register('categoryId')}
-                      value={category.id}
+                      checked={selectedCategoryId === category.id}
+                      onCheckedChange={(checked) => {
+                        if (checked) {
+                          register('categoryId').onChange({
+                            target: { value: category.id, name: 'categoryId' },
+                          });
+                        } else {
+                          register('categoryId').onChange({
+                            target: { value: '', name: 'categoryId' },
+                          });
+                        }
+                      }}
                     />
                     <label
                       htmlFor={category.id}
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                     >
-                      {category.label}
+                      {category.icon} {category.name}
                     </label>
                   </div>
                 ))}
