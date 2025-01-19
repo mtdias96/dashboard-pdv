@@ -183,36 +183,6 @@ export default function ProductModalForm({
                   </div>
                 ))}
               </div>
-
-              {/* {categories?.map((category) => (
-                <div
-                  key={category.id}
-                  className="flex items-center space-x-2 p-4 hover:bg-gray-50 rounded-md border w-full max-w-[100%]"
-                >
-                  <Checkbox
-                    id={category.id}
-                    {...register('categoryId')}
-                    checked={selectedCategoryId === category.id}
-                    onCheckedChange={(checked) => {
-                      if (checked) {
-                        register('categoryId').onChange({
-                          target: { value: category.id, name: 'categoryId' },
-                        });
-                      } else {
-                        register('categoryId').onChange({
-                          target: { value: '', name: 'categoryId' },
-                        });
-                      }
-                    }}
-                  />
-                  <label
-                    htmlFor={category.id}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                  >
-                    {category.icon} {category.name}
-                  </label>
-                </div>
-              ))} */}
             </div>
           </div>
           <div className="w-full flex justify-end">
