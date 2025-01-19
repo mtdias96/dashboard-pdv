@@ -63,7 +63,9 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
                 <TableCell className="leading-6 text-left">
                   {invoice.name}
                 </TableCell>
-                <TableCell className="text-left leading-6">Cerveja</TableCell>
+                <TableCell className="text-left leading-6">
+                  {invoice.category.name}
+                </TableCell>
                 <TableCell className="text-left leading-6">
                   {fCurrency(invoice.price)}
                 </TableCell>
@@ -118,7 +120,9 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
                 <TableCell className="leading-6 text-left">
                   {invoice.name}
                 </TableCell>
-                <TableCell className="text-left leading-6">Cerveja</TableCell>
+                <TableCell className="text-left leading-6">
+                  {invoice.category.name}
+                </TableCell>
                 <TableCell className="text-left leading-6">
                   {fCurrency(invoice.price)}
                 </TableCell>
