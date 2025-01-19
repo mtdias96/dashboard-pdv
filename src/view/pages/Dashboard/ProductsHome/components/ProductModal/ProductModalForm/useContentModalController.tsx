@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDropzone } from 'react-dropzone';
 
+import { useGetCategory } from '@/app/hooks/category/useGetCategory';
 import { useCreateProduct } from '@/app/hooks/product/useCreateProduct';
 import { useEditProduct } from '@/app/hooks/product/useEditProduct';
 import { IProduct } from '@/app/interfaces/IProduct';
@@ -25,6 +26,7 @@ type ModalSchema = z.infer<typeof modalSchema>;
 
 export function useContentModalController(editProduct: boolean) {
   const { createProduct, isPending } = useCreateProduct();
+  const { data: categories } = useGetCategory();
   const { edit } = useEditProduct();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [imageData, setImageData] = useState<File>();
@@ -36,6 +38,7 @@ export function useContentModalController(editProduct: boolean) {
     setValue,
     formState: { errors, isSubmitting },
     reset,
+    watch,
   } = useForm<ModalSchema>({
     resolver: zodResolver(modalSchema),
   });
@@ -85,5 +88,7 @@ export function useContentModalController(editProduct: boolean) {
     setSelectedImage,
     isPending,
     open,
+    categories,
+    watch,
   };
 }
