@@ -70,7 +70,7 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
                   {fCurrency(invoice.price)}
                 </TableCell>
                 <TableCell className="text-left leading-6">
-                  {invoice.stock || 'N/A'}
+                  {invoice.stock.quantity || 'N/A'}
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex items-center justify-end space-x-2">
@@ -127,7 +127,7 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
                   {fCurrency(invoice.price)}
                 </TableCell>
                 <TableCell className="text-left leading-6">
-                  {invoice.stock || 'N/A'}
+                  {invoice.stock.quantity || 'N/A'}
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex items-center justify-end space-x-2">

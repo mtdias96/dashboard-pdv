@@ -5,6 +5,11 @@ export interface IProduct {
   imageUrl?: string;
   image?: File;
   categoryId: string;
-  stock: number;
   description?: string;
+  category: {
+    name: string;
+  };
+  stock: {
+    quantity: number;
+  };
 }
