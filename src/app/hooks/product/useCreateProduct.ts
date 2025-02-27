@@ -1,5 +1,5 @@
 import { useGetProducts } from '@/app/hooks/product/useGetProduct';
-import { IProduct } from '@/app/interfaces/IProduct';
+import { IProductCreate } from '@/app/interfaces/IProduct';
 import { ProductService } from '@/app/services/ProductService';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 export function useCreateProduct() {
   const { refetch } = useGetProducts();
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: async (product: IProduct): Promise<void> => {
+    mutationFn: async (product: IProductCreate): Promise<void> => {
       await ProductService.createProduct(product);
     },
     onSuccess: () => {
