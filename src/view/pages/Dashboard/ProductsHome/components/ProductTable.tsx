@@ -51,7 +51,7 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
         </TableHeader>
         <TableBody>
           {search && search.length > 0 ? (
-            search.map((invoice) => (
+            search.map((invoice: IProduct) => (
               <TableRow key={invoice.id} className="hover:bg-gray-50">
                 <TableCell className="w-[100px] h-[150px]">
                   <img
@@ -70,7 +70,7 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
                   {fCurrency(invoice.price)}
                 </TableCell>
                 <TableCell className="text-left leading-6">
-                  {invoice.stock.quantity || 'N/A'}
+                  {invoice.stock.quantity|| 'N/A'}
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex items-center justify-end space-x-2">
@@ -108,7 +108,7 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
               </TableCell>
             </TableRow>
           ) : products.length > 0 ? (
-            products.map((invoice) => (
+            products.map((invoice: IProduct) => (
               <TableRow key={invoice.id} className="hover:bg-gray-50">
                 <TableCell className="w-[100px] h-[150px]">
                   <img
@@ -127,7 +127,7 @@ export function ProductTable({ baseURL, products, search }: ProductTableProps) {
                   {fCurrency(invoice.price)}
                 </TableCell>
                 <TableCell className="text-left leading-6">
-                  {invoice.stock.quantity || 'N/A'}
+                  {invoice.stock.quantity ?? 0}
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex items-center justify-end space-x-2">
