@@ -46,7 +46,7 @@ export function ProductsHome() {
     searchData && searchData.length > 0 ? searchResults : products || [];
 
   return (
-    <Card className="">
+    <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
         <CardTitle className="text-2xl font-bold">Produtos</CardTitle>
       </CardHeader>

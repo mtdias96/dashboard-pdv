@@ -25,7 +25,6 @@ export function CategoryModalForm() {
   });
 
   const handleSubmit = hookFormHandleSubmit((data) => {
-    console.log('envio');
     createCategory(data);
     reset();
   });

@@ -1,4 +1,4 @@
-import { IProduct } from '@/app/interfaces/IProduct';
+import { IProduct, IProductCreate } from '@/app/interfaces/IProduct';
 import { httpClient } from '@/app/services/httpClient';
 
 export class ProductService {
@@ -16,12 +16,13 @@ export class ProductService {
     return data;
   }
 
-  static async createProduct(product: IProduct): Promise<void> {
+  static async createProduct(product: IProductCreate): Promise<void> {
     const formData = new FormData();
     formData.append('name', product.name || '');
     formData.append('description', product.description || '');
     formData.append('price', product.price?.toString() || '');
     formData.append('stock', product.stock?.toString() || '');
+    formData.append('lowStock', product.lowStock.toString());
     formData.append('categoryId', product.categoryId || '');
 
     if (product.image) {
@@ -37,13 +38,15 @@ export class ProductService {
 
   static async editProduct(
     productId: string,
-    product: IProduct,
+    product: IProductCreate,
   ): Promise<void> {
     const formData = new FormData();
+
     formData.append('name', product.name || '');
     formData.append('description', product.description || '');
-    formData.append('price', product.price?.toString() || '');
-    formData.append('stock', product.stock?.toString() || '');
+    formData.append('price', product.price.toString() || '');
+    formData.append('stock', product.stock.toString());
+    formData.append('lowStock', product.lowStock.toString());
     formData.append('categoryId', product.categoryId || '');
 
     if (product.image) {

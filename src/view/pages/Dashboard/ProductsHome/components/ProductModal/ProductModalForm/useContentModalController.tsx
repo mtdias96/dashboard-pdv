@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { useGetCategory } from '@/app/hooks/category/useGetCategory';
 import { useCreateProduct } from '@/app/hooks/product/useCreateProduct';
 import { useEditProduct } from '@/app/hooks/product/useEditProduct';
-import { IProduct } from '@/app/interfaces/IProduct';
+import { IProductCreate } from '@/app/interfaces/IProduct';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -16,6 +16,10 @@ const modalSchema = z.object({
   categoryId: z.string(),
   image: z.instanceof(File).optional(),
   stock: z.coerce
+    .number()
+    .int()
+    .positive('Estoque deve ser um número positivo'),
+  lowStock: z.coerce
     .number()
     .int()
     .positive('Estoque deve ser um número positivo'),
@@ -58,8 +62,11 @@ export function useContentModalController(editProduct: boolean) {
     const product = {
       ...data,
       price: Number(data.price),
+      quantity: Number(data.stock),
+      lowStock: Number(data.lowStock),
       image: imageData,
-    } as IProduct;
+    } as IProductCreate;
+
 
     if (!editProduct) {
       createProduct(product);
@@ -73,6 +80,8 @@ export function useContentModalController(editProduct: boolean) {
     setSelectedImage(null);
     reset();
   });
+
+
 
   return {
     register,

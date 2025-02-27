@@ -5,11 +5,17 @@ import { Card, CardContent } from '@/view/components/ui/card';
 import { Checkbox } from '@/view/components/ui/checkbox';
 import { FormItem, FormLabel } from '@/view/components/ui/form';
 import { Input } from '@/view/components/ui/input';
+import { Label } from '@/view/components/ui/label';
 import { Textarea } from '@/view/components/ui/textarea';
-import { ImagePlus, Search } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/view/components/ui/tooltip';
+import { ImagePlus, Info, Search } from 'lucide-react';
 import { useEffect } from 'react';
 import { useContentModalController } from './useContentModalController';
-
 interface IProductModalForm {
   productEdit?: IProduct;
   isEditing: boolean;
@@ -38,7 +44,7 @@ export default function ProductModalForm({
     if (isEditing && productEdit) {
       setValue('name', productEdit.name);
       setValue('description', productEdit.description || '');
-      setValue('stock', productEdit.stock || 0);
+      setValue('stock', productEdit.stock.quantity || 0);
       setValue('price', productEdit.price || 0);
       setValue('id', productEdit.id || '');
     }
@@ -131,6 +137,36 @@ export default function ProductModalForm({
                     placeholder="Ex: 26"
                     type="number"
                     {...register('stock')}
+                  />
+                </FormItem>
+                <FormItem className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <Label
+                      htmlFor="lowStock"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      Alerta de estoque
+                    </Label>
+                    <TooltipProvider delayDuration={300}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <span className="text-gray-500 hover:text-gray-700">
+                            <Info className="h-5 w-5 cursor-pointer" />
+                          </span>
+                        </TooltipTrigger>
+                        <TooltipContent className="rounded-lg shadow-md bg-white border border-gray-300 p-3 text-xs text-gray-600 max-w-xs">
+                          Este campo configura o limite para notificações de
+                          estoque baixo.
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                  <Input
+                    id="lowStock"
+                    type="number"
+                    placeholder="Ex.: 100"
+                    className="w-full rounded-md border-gray-300 shadow-sm text-sm focus:border-blue-500 focus:ring-blue-500"
+                    {...register('lowStock')}
                   />
                 </FormItem>
 
