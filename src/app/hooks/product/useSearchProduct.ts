@@ -9,9 +9,11 @@ export function useSearchProducts(
     queryKey: ['products', search],
     queryFn: async () => {
       const response = await ProductService.getSearchProduct(search);
+
       if (!response) {
         throw new Error('Failed to fetch products');
       }
+
       return response;
     },
   });
