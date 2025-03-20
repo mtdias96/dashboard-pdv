@@ -10,6 +10,10 @@ export interface IProductCreate {
   description?: string;
 }
 
+export interface IProductResponse extends IProductCreate {
+  quantity: number;
+}
+
 export interface IProduct {
   category: {
     name: string;
@@ -21,7 +25,7 @@ export interface IProduct {
   id: string;
   name: string;
   price: number;
-  imageUrl?: string;
+  imageUrl: string;
   image?: File;
   categoryId: string;
   lowStock: number;
