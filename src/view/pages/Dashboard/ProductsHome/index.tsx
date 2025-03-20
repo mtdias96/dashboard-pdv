@@ -18,7 +18,7 @@ import {
 import { Plus, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { ProductModal } from './components/ProductModal';
-import { ProductTable } from './components/ProductTable';
+import { ProductTable } from './components/ProductModal/ProductTable';
 
 const baseURL = 'http://localhost:8080/';
 

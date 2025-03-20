@@ -5,8 +5,9 @@ import { ProductLayout } from '@/view/layout/ProductLayout';
 import Login from '@/view/pages/Auth/Login';
 import Register from '@/view/pages/Auth/Register';
 import { CategoryHome } from '@/view/pages/Dashboard/CategoryHome';
-import { Home } from '@/view/pages/Dashboard/Home';
+import Home from '@/view/pages/Dashboard/Home';
 import { ProductsHome } from '@/view/pages/Dashboard/ProductsHome';
+
 
 import { useRoutes } from 'react-router-dom';
 
