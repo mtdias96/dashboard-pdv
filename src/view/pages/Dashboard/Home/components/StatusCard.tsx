@@ -1,3 +1,4 @@
+import { useGetProducts } from "@/app/hooks/product/useGetProduct"
 import { useGetTotalSales } from "@/app/hooks/sales/useGetTotalSales"
 import { fCurrency } from "@/app/utils/formatNumber"
 import { Badge } from "@/view/components/ui/badge"
@@ -10,7 +11,9 @@ interface StatusCardProps {
 }
 
 export function StatusCard({ financialCurrentDay }: StatusCardProps) {
+  const {data: products} = useGetProducts()
   const {data} = useGetTotalSales()
+
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -39,18 +42,18 @@ export function StatusCard({ financialCurrentDay }: StatusCardProps) {
             iconBgColor="bg-blue-100"
             title="Total de Vendas"
             value={data?.total}
-            badge={{
-              text: "+8% vs semana anterior",
-              variant: "outline",
-            }}
+            // badge={{
+            //   text: "+8% vs semana anterior",
+            //   variant: "outline",
+            // }}
           />
 
           <StatusMetricItem
             icon={Package}
             iconColor="text-green-500"
             iconBgColor="bg-green-100"
-            title="Produtos Ativos"
-            value="187"
+            title="Produtos Cadastrados"
+            value={products?.length}
           />
 
           <StatusMetricItem
@@ -58,7 +61,7 @@ export function StatusCard({ financialCurrentDay }: StatusCardProps) {
             iconColor="text-amber-500"
             iconBgColor="bg-amber-100"
             title="Alertas Pendentes"
-            value="3"
+            value="0"
           />
         </div>
       </CardContent>
