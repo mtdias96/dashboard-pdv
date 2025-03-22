@@ -25,16 +25,16 @@ const topCategories = Object.entries(salesCategory?.percentageByCategory ?? {})
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <MetricCard
-        title="Faturamento Diário"
+        title="Faturamento total"
         value={financialCurrent}
         icon={DollarSign}
         trend={{
-          value: "+15% em relação a ontem",
+          value: "+15% Em relação a meta estabelecida",
           isPositive: true,
         }}
       >
         <div className="mt-4">
-          <Progress value={75} className="h-2" />
+          <Progress value={100} className="h-2" />
         </div>
       </MetricCard>
 
@@ -56,10 +56,10 @@ const topCategories = Object.entries(salesCategory?.percentageByCategory ?? {})
         title="Ticket Médio"
         value={fCurrency(Number(totalTicket?.averageTicket))}
         icon={ShoppingCart}
-        trend={{
-          value: "+5% em relação a ontem",
-          isPositive: true,
-        }}
+        // trend={{
+        //   value: "+5% em relação a ontem",
+        //   isPositive: true,
+        // }}
       >
         <div className="mt-4 space-y-1">
           {totalTicket?.salesByCategory.map(t => (
@@ -72,7 +72,7 @@ const topCategories = Object.entries(salesCategory?.percentageByCategory ?? {})
       </MetricCard>
 
       <MetricCard title="Vendas por Categoria" value={(salesCategory?.totalSales) || 0 } icon={PieChart}>
-        <p className="text-xs text-muted-foreground">Vendas totais hoje</p>
+        <p className="text-xs text-muted-foreground">Vendas totais</p>
         <div className="mt-4 space-y-2">
     {topCategories.map(([category, percentage], index) => (
       <div key={category} className="flex items-center justify-between">

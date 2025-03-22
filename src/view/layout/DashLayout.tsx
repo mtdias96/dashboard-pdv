@@ -10,7 +10,7 @@ export default function DashLayout() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <div className="pl-9 pr-20 mt-11">
+        <div className="pl-2 pr-2 mt-11">
           <div className='flex justify-end'>
           <div className="flex flex-1 flex-col">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
