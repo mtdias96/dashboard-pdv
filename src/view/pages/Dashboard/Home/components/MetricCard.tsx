@@ -5,8 +5,8 @@ import { ArrowRight, ArrowUp, type LucideIcon } from "lucide-react"
 import type { ReactNode } from "react"
 
 interface MetricCardProps {
-  title: string
-  value: string
+  title: string,
+  value: string | number,
   icon: LucideIcon
   trend?: {
     value: string

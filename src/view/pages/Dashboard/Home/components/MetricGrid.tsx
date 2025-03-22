@@ -1,5 +1,6 @@
 
 import { useGetTicket } from "@/app/hooks/financial/useGetTicket"
+import { useGetSalesCategory } from "@/app/hooks/sales/useGetSalesCategory"
 import { useGetStockLow } from "@/app/hooks/stock/useStockLow"
 import { fCurrency } from "@/app/utils/formatNumber"
 import { Progress } from "@/view/components/ui/progress"
@@ -10,26 +11,30 @@ export function MetricsGrid({ financialCurrentDay }: { financialCurrentDay: numb
   const financialCurrent = fCurrency(financialCurrentDay)
   const { data: productLowStock } = useGetStockLow()
   const { data: totalTicket } = useGetTicket()
-
-  console.log(totalTicket);
+  const {data: salesCategory} = useGetSalesCategory()
 
   const outOfStock = productLowStock?.filter(p => p.quantity < 1);
   const criticalStock = productLowStock?.filter(p => p.quantity >= 1)
+  const colors = ["bg-primary", "bg-blue-500", "bg-yellow-500"];
+
+const topCategories = Object.entries(salesCategory?.percentageByCategory ?? {})
+  .sort(([, percA], [, percB]) => percB - percA)
+  .slice(0, 3);
 
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <MetricCard
-        title="Faturamento Diário"
+        title="Faturamento total"
         value={financialCurrent}
         icon={DollarSign}
         trend={{
-          value: "+15% em relação a ontem",
+          value: "+15% Em relação a meta estabelecida",
           isPositive: true,
         }}
       >
         <div className="mt-4">
-          <Progress value={75} className="h-2" />
+          <Progress value={100} className="h-2" />
         </div>
       </MetricCard>
 
@@ -51,10 +56,10 @@ export function MetricsGrid({ financialCurrentDay }: { financialCurrentDay: numb
         title="Ticket Médio"
         value={fCurrency(Number(totalTicket?.averageTicket))}
         icon={ShoppingCart}
-        trend={{
-          value: "+5% em relação a ontem",
-          isPositive: true,
-        }}
+        // trend={{
+        //   value: "+5% em relação a ontem",
+        //   isPositive: true,
+        // }}
       >
         <div className="mt-4 space-y-1">
           {totalTicket?.salesByCategory.map(t => (
@@ -66,31 +71,19 @@ export function MetricsGrid({ financialCurrentDay }: { financialCurrentDay: numb
         </div>
       </MetricCard>
 
-      <MetricCard title="Vendas por Categoria" value="42" icon={PieChart}>
-        <p className="text-xs text-muted-foreground">Vendas totais hoje</p>
+      <MetricCard title="Vendas por Categoria" value={(salesCategory?.totalSales) || 0 } icon={PieChart}>
+        <p className="text-xs text-muted-foreground">Vendas totais</p>
         <div className="mt-4 space-y-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="mr-2 h-2 w-2 rounded-full bg-primary"></div>
-              <span className="text-sm">Vinhos</span>
-            </div>
-            <span className="text-sm font-medium">68%</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="mr-2 h-2 w-2 rounded-full bg-blue-500"></div>
-              <span className="text-sm">Cervejas</span>
-            </div>
-            <span className="text-sm font-medium">24%</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="mr-2 h-2 w-2 rounded-full bg-yellow-500"></div>
-              <span className="text-sm">Destilados</span>
-            </div>
-            <span className="text-sm font-medium">8%</span>
-          </div>
+    {topCategories.map(([category, percentage], index) => (
+      <div key={category} className="flex items-center justify-between">
+        <div className="flex items-center">
+          <div className={`mr-2 h-2 w-2 rounded-full ${colors[index]}`}></div>
+          <span className="text-sm">{category}</span>
         </div>
+        <span className="text-sm font-medium">{percentage}%</span>
+      </div>
+    ))}
+  </div>
       </MetricCard>
     </div>
   )

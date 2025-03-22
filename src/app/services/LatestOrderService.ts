@@ -3,7 +3,9 @@ import { httpClient } from '@/app/services/httpClient';
 
 export class LatestOrderService {
   static async getLatestOrder() {
-    const { data } = await httpClient.get<ILatestOrder[]>('latest-orders');
+    const { data } = await httpClient.get<ILatestOrder[]>(
+      'orders/latest-orders',
+    );
 
     return data;
   }
