@@ -1,5 +1,5 @@
 import { ITotalSales } from '@/app/hooks/sales/useGetTotalSales';
-import { ISalesResponse } from '@/app/interfaces/ISales';
+import { IBestSales, ISalesResponse } from '@/app/interfaces/ISales';
 import { httpClient } from '@/app/services/httpClient';
 
 export class SaleslService {
@@ -13,6 +13,12 @@ export class SaleslService {
     const { data } = await httpClient.get<ISalesResponse>(
       '/sales/sales-category',
     );
+
+    return data;
+  }
+
+  static async getBestSellingProducts() {
+    const { data } = await httpClient.get<IBestSales[]>('/sales/best-seller');
 
     return data;
   }
