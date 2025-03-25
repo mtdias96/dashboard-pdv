@@ -5,6 +5,7 @@ import { useGetCategory } from '@/app/hooks/category/useGetCategory';
 import { useCreateProduct } from '@/app/hooks/product/useCreateProduct';
 import { useEditProduct } from '@/app/hooks/product/useEditProduct';
 import { IProductCreate } from '@/app/interfaces/IProduct';
+import { AwsService } from '@/app/services/aws/AwsService';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -47,6 +48,7 @@ export function useContentModalController(editProduct: boolean) {
     resolver: zodResolver(modalSchema),
   });
 
+
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop: (acceptedFiles) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
@@ -58,15 +60,18 @@ export function useContentModalController(editProduct: boolean) {
     },
   });
 
-  const handleSubmit = hookFormHandleSubmit((data) => {
-    const product = {
+  const handleSubmit = hookFormHandleSubmit(async (data) => {
+  const { fileUrl,imageKey } = await AwsService.getPresignedURL(imageData as File);
+  await AwsService.uploadFile(fileUrl, imageData as File,);
+
+
+   const product = {
       ...data,
       price: Number(data.price),
       quantity: Number(data.stock),
       lowStock: Number(data.lowStock),
-      image: imageData,
+      imageUrl: imageKey
     } as IProductCreate;
-
 
     if (!editProduct) {
       createProduct(product);
