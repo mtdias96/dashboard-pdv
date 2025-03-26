@@ -2,7 +2,7 @@
 
 O **Adegatech Dashboard** é uma plataforma escalável e automatizada voltada para a gestão de adegas. Com ela, donos de estabelecimentos podem controlar vendas, estoque, pedidos e relatórios de maneira eficiente e centralizada. O objetivo é facilitar a operação diária e oferecer insights sobre o desempenho do negócio.
 
-## Funcionalidades
+## Funcionalidades/Futuras funcionalidades
 
 - **Gestão de Produtos e Estoque**: Adicione, edite ou remova itens do estoque diretamente pelo dashboard.
 - **Controle de Vendas**: Registre cada venda associada a um funcionário e acompanhe o desempenho individual.
