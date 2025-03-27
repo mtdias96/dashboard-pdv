@@ -5,8 +5,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Separator } from "@/view/components/ui/separator"
 import { Download } from "lucide-react"
 
-const baseUrl = 'http://localhost:8080/'
-
 export function TopProducts() {
   const {data: bestSellerProduct} = useGetBestSellerProduct()
 
@@ -23,7 +21,7 @@ export function TopProducts() {
           {bestSellerProduct?.map((product) => (
             <div key={product.productId} className="flex items-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-full overflow-hidden ">
-               <img src={`${baseUrl}${product.imageUrl}`} alt={product.name} className=" object-cover" />
+               <img src={`${import.meta.env.VITE_API_URL}${product.imageUrl}`} alt={product.name} className=" object-cover" />
               </div>
               <div className="ml-4 flex-1 space-y-1">
                 <p className="text-sm font-medium leading-none">{product.name}</p>
