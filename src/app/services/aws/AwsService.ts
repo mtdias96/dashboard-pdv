@@ -6,7 +6,7 @@ export class AwsService {
     const { data } = await httpClient.post<{
       fileUrl: string;
       imageKey: string;
-    }>('http://localhost:8080/aws/get-presigned-url', {
+    }>(`${import.meta.env.VITE_API_URL}/aws/get-presigned-url`, {
       fileName: file.name,
     });
 
