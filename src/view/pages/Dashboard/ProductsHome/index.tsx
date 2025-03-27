@@ -20,14 +20,14 @@ import { useEffect, useState } from 'react';
 import { ProductModal } from './components/ProductModal';
 import { ProductTable } from './components/ProductModal/ProductTable';
 
-const baseURL = 'http://localhost:8080/';
+const baseURL = `https://adega-tech.s3.sa-east-1.amazonaws.com/`;
 
 export function ProductsHome() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('all');
   const [searchResults, setSearchResults] = useState([]);
-  const { data: products } = useGetProducts(); // Produtos padrão
+  const { data: products } = useGetProducts();
   const { data: searchData } = useSearchProducts(searchTerm);
 
   const handleSearch = () => {

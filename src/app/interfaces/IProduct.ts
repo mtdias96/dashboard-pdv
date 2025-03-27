@@ -3,7 +3,6 @@ export interface IProductCreate {
   name: string;
   price: number;
   imageUrl?: string;
-  image?: File;
   categoryId: string;
   stock: number;
   lowStock: number;
@@ -26,7 +25,6 @@ export interface IProduct {
   name: string;
   price: number;
   imageUrl: string;
-  image?: File;
   categoryId: string;
   lowStock: number;
   description?: string;
