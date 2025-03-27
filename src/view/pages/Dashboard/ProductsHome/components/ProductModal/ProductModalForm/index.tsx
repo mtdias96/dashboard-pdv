@@ -50,7 +50,6 @@ export default function ProductModalForm({
     }
   }, [isEditing, productEdit, setValue]);
 
-  const baseURL = 'http://localhost:8080/';
   const selectedCategoryId = watch('categoryId');
 
   return (
@@ -77,7 +76,7 @@ export default function ProductModalForm({
                     />
                   ) : productEdit?.imageUrl ? (
                     <img
-                      src={`${baseURL}${productEdit.imageUrl}`}
+                      src={`${import.meta.env.VITE_API_URL}${productEdit.imageUrl}`}
                       alt="Product"
                       className="w-full h-full object-contain rounded-lg"
                     />

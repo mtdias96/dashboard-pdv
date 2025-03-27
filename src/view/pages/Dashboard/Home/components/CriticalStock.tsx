@@ -4,7 +4,6 @@ import { Button } from "@/view/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/view/components/ui/card"
 import { AlertTriangle, Download, Package, Truck } from "lucide-react"
 
-const baseURL = "http://localhost:8080/"
 export function CriticalStock() {
   const { data } = useGetProducts()
 
@@ -45,7 +44,7 @@ export function CriticalStock() {
                       }`}
                     >
                       <img
-                        src={product.imageUrl ? `${baseURL}${product.imageUrl}` : "/placeholder.svg?height=40&width=40"}
+                        src={product.imageUrl ? `${import.meta.env.VITE_API_URL}${product.imageUrl}` : "/placeholder.svg?height=40&width=40"}
                         alt={product.name}
                         className={`h-full w-full object-cover ${isOutOfStock ? "opacity-70" : ""}`}
                       />

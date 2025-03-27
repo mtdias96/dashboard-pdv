@@ -19,8 +19,6 @@ const PixIcon = () => (
   <img className="h-4 w-4 mr-2" src={pix} alt="" />
 )
 
-const baseURL = 'http://localhost:8080/';
-
 const formSchema = z.object({
   items: z
     .array(
@@ -64,20 +62,15 @@ export default function SalesModal() {
     },
   })
 
-  // Filter products based on search query
-  // const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
-
-  // Add product to selected items
   const addProduct = (product: { id: string; name: string; price: number; imageUrl: string }) => {
     const existingItem = selectedItems.find((item) => item.productId === product.id)
 
     if (existingItem) {
-      // Update quantity if product already exists
+
       setSelectedItems(
         selectedItems.map((item) => (item.productId === product.id ? { ...item, quantity: item.quantity + 1 } : item)),
       )
     } else {
-      // Add new product
       setSelectedItems([
         ...selectedItems,
         {
@@ -91,7 +84,6 @@ export default function SalesModal() {
     }
   }
 
-  // Update quantity
   const updateQuantity = (productId: string, newQuantity: number) => {
     if (newQuantity < 1) return
 
@@ -100,16 +92,13 @@ export default function SalesModal() {
     )
   }
 
-  // Remove product from selected items
   const removeProduct = (productId: string) => {
     setSelectedItems(selectedItems.filter((item) => item.productId !== productId))
   }
 
-  // Calculate total
   const total = selectedItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
     const handleSubmit = form.handleSubmit((data ) => {
-      console.log(data);
       const saleProduct = {
        items: data.items.map(item => ({
         quantity: item.quantity,
@@ -122,7 +111,6 @@ export default function SalesModal() {
       form.reset();
     });
 
-  // Update form values when selected items change
   useEffect(() => {
     form.setValue("items", selectedItems)
   }, [selectedItems, form])
@@ -143,7 +131,6 @@ export default function SalesModal() {
               <DialogDescription>Adicione produtos e finalize a venda.</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
-              {/* Search products */}
               <div className="relative text-center">
                 <Search className="absolute left-2.5 top-[19px] h-4 w-4 text-muted-foreground" />
                 <Input
@@ -155,7 +142,6 @@ export default function SalesModal() {
                 />
               </div>
 
-              {/* Product list */}
               <div className="border rounded-md">
                 <ScrollArea className="h-[200px] w-full">
                   <div className="p-4 grid gap-2">
@@ -167,7 +153,7 @@ export default function SalesModal() {
                           onClick={() => addProduct(product)}
                         >
                           <div className="flex items-center gap-3">
-                            <img src={`${baseURL}${product.imageUrl}`} className="w-14 h-14" />
+                            <img src={`${import.meta.env.VITE_API_URL}${product.imageUrl}`} className="w-14 h-14" />
                             <div>
                               <div className="font-medium">{product.name}</div>
                               <div className="text-sm text-muted-foreground">R$ {product.price.toFixed(2)}</div>
@@ -185,7 +171,6 @@ export default function SalesModal() {
                 </ScrollArea>
               </div>
 
-              {/* Selected items */}
               {selectedItems.length > 0 && (
                 <div className="border rounded-md p-4 space-y-2">
                   <h3 className="font-medium">Itens Selecionados</h3>
@@ -193,7 +178,7 @@ export default function SalesModal() {
                   {selectedItems.map((item) => (
                     <div key={item.productId} className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-3 flex-1">
-                      <img src={`${baseURL}${item.imageUrl}`} className="w-10 h-10" />
+                      <img src={`${import.meta.env.VITE_API_URL}${item.imageUrl}`} className="w-10 h-10" />
                         <div>
                           <div className="font-medium text-sm">{item.name}</div>
                           <div className="text-sm text-muted-foreground">R$ {item.price.toFixed(2)}</div>
@@ -239,7 +224,6 @@ export default function SalesModal() {
                 </div>
               )}
 
-              {/* Payment method */}
               <FormField
                 control={form.control}
                 name="paymentMethod"
