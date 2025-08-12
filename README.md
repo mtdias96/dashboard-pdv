@@ -6,21 +6,18 @@ O objetivo é **facilitar a operação diária** e oferecer **insights** sobre o
 
 ---
 
-## 🎥 Demonstração
+## 🎥 Vídeo do Projeto
 
-[![Assista ao vídeo](https://img.icons8.com/ios-filled/50/000000/play--v1.png)](https://github.com/user-attachments/assets/63363fcd-d353-4eb3-8760-1f781d07f710)  
-*(clique para assistir)*
+https://github.com/user-attachments/assets/63363fcd-d353-4eb3-8760-1f781d07f710
 
 ---
 
 ## 🚀 Funcionalidades / Futuras Funcionalidades
 
 - 📦 **Gestão de Produtos e Estoque** — Adicione, edite ou remova itens diretamente no dashboard.  
-- 💰 **Controle de Vendas** — Registre vendas associadas a funcionários e acompanhe o desempenho individual.  
-- 📊 **Relatórios Automatizados** — Gere relatórios financeiros (receitas e despesas) e exporte para PDF.  
+- 📊 **Relatórios Automatizados** — Gere relatórios financeiros (receitas e despesas). 
 - ⏱ **Indicadores em Tempo Real** — Veja faturamento diário, produtos mais vendidos e horários de pico.  
 - 📝 **Histórico de Operações** — Registro detalhado de transações, com data, valor e status.  
-- 💳 **Pagamentos via QR Code / NFC** — Facilite o pagamento diretamente pelo aplicativo.  
 - 🔔 **Alertas em Tempo Real** — Notificações sobre pedidos atrasados, estoque baixo ou metas atingidas.  
 
 ---
