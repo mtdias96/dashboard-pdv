@@ -1,41 +1,39 @@
-# Adegatech Dashboard
+# 🍷 Adegatech Dashboard
 
-O **Adegatech Dashboard** é uma plataforma escalável e automatizada voltada para a gestão de adegas. Com ela, donos de estabelecimentos podem controlar vendas, estoque, pedidos e relatórios de maneira eficiente e centralizada. O objetivo é facilitar a operação diária e oferecer insights sobre o desempenho do negócio.
+O **Adegatech Dashboard** é uma plataforma **escalável** e **automatizada** voltada para a **gestão de adegas**.  
+Com ele, donos de estabelecimentos podem **controlar vendas, estoque, pedidos e relatórios** de forma prática e centralizada.  
+O objetivo é **facilitar a operação diária** e oferecer **insights** sobre o desempenho do negócio.
 
-## Funcionalidades/Futuras funcionalidades
+---
 
-- **Gestão de Produtos e Estoque**: Adicione, edite ou remova itens do estoque diretamente pelo dashboard.
-- **Controle de Vendas**: Registre cada venda associada a um funcionário e acompanhe o desempenho individual.
-- **Relatórios Automatizados**: Geração de relatórios financeiros (receita, despesas) com exportação para formatos como PDF.
-- **Indicadores em Tempo Real**: Acompanhe métricas como faturamento diário, produtos mais vendidos e horários de pico.
-- **Histórico de Operações**: Registro detalhado de transações, incluindo data, valor e status.
-- **Pagamentos via QR Code/NFC**: Integração para facilitar o pagamento diretamente pelo aplicativo.
-- **Alertas em Tempo Real**: Notificações sobre pedidos atrasados, estoque baixo ou metas diárias atingidas.
+## 🎥 Demonstração
 
-## Tecnologias Utilizadas
+[![Assista ao vídeo](https://img.icons8.com/ios-filled/50/000000/play--v1.png)](https://github.com/user-attachments/assets/63363fcd-d353-4eb3-8760-1f781d07f710)  
+*(clique para assistir)*
 
-### Frontend
-- **React** com **Shadcn** para a interface do dashboard.
-- **Hook Forms** e **Zod** para validação e gerenciamento de formulários.
-- **Talwind** para customização de estilos.
+---
 
-### Backend
-- **Node.js** com **NestJs** para criação da API.
-- **Prisma** para consultas ao banco de dados **PostgreSQL**.
-- **Docker** para containerização.
+## 🚀 Funcionalidades / Futuras Funcionalidades
 
-### DevOps
-- **GitHub Actions** configurado para:
-  - Lint nos commits (commitlint).
-  - Validação do nome das branches (lint-branch).
-  - Execução de testes e jobs (lint-job).
+- 📦 **Gestão de Produtos e Estoque** — Adicione, edite ou remova itens diretamente no dashboard.  
+- 💰 **Controle de Vendas** — Registre vendas associadas a funcionários e acompanhe o desempenho individual.  
+- 📊 **Relatórios Automatizados** — Gere relatórios financeiros (receitas e despesas) e exporte para PDF.  
+- ⏱ **Indicadores em Tempo Real** — Veja faturamento diário, produtos mais vendidos e horários de pico.  
+- 📝 **Histórico de Operações** — Registro detalhado de transações, com data, valor e status.  
+- 💳 **Pagamentos via QR Code / NFC** — Facilite o pagamento diretamente pelo aplicativo.  
+- 🔔 **Alertas em Tempo Real** — Notificações sobre pedidos atrasados, estoque baixo ou metas atingidas.  
 
-### Infraestrutura
-- Em andamento.
+---
 
-## Instalação e Configuração
+## 🛠 Tecnologias Utilizadas
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/adegatech-dashboard.git
+### **Frontend**
+- ⚛ **React** com **Shadcn** para interface moderna.  
+- 📝 **React Hook Form** + **Zod** para validação e gerenciamento de formulários.  
+- 📑 **React Table** para tabelas dinâmicas e personalizáveis.  
+- 🔄 **React Query** para gerenciamento eficiente de dados assíncronos.  
+- 🎨 **Tailwind CSS** para customização de estilos.  
 
+---
+
+💡 *Este projeto está em constante evolução e novas funcionalidades serão adicionadas em breve.*
